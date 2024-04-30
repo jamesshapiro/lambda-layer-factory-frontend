@@ -2,23 +2,76 @@
   Custom styles // JS
 */
 body {
-  font-family: sans-serif;
+  font-family: 'Lato', sans-serif;
+  --number-box-height: 45px;
+  --number-box-width: 60px;
+  --spacer-width: 15px;
+
+  --number-box-background-color: hsl(240, 10%, 95%);
+  --number-box-hover-background-color: hsl(55, 100%, 91%);
+  --matrix-cell-background-color: hsl(240, 50%, 93%);
+
+  --action-box-background-color: hsl(240 10% 95% / 50%);
+  --action-box-hover-background-color: hsl(240 10% 85% / 50%);
+  --action-box-hover-font-color: hsl(240 90% 50% / 50%);
+  --action-box-font-color: hsl(240 65% 40% / 50%);
+  --action-box-border-color: hsl(240 65% 65% / 50%);
+  --bubble-hover-background-color: hsl(240, 100%, 50%);
+
+  --number-box-hover-font-color: hsl(240, 100%, 50%);
+  --number-box-font-color: hsl(240, 85%, 40%);
+  --number-box-border-color: hsl(240, 85%, 65%);
+  --bubble-hover-border-color: hsl(240, 100%, 90%);
+  --number-box-border-radius: 8px;
+
+  --header-color: hsl(240, 85%, 35%);
+  --active-button-color: hsl(240, 85%, 35%);
+  --hover-button-color: hsl(240, 60%, 55%);
+  --mode-button-selected: hsl(240, 85%, 35%);
+  --min-cell-width: 20px;
+  --min-button-width: 20px;
+
+  --background-gradient-top: hsl(286, 87%, 91%);
+  --background-gradient-bottom: hsl(240, 83%, 91%);
+
+  --select-td-background: hsl(240, 75%, 89%);
+  --submit-button-background: hsl(240, 100%, 71%);
+  --submit-button-border: hsl(240, 42%, 40%);
+  --box-shadow-distance: 2px;
+
+  --box-gradient: linear-gradient(hsl(240, 50%, 93%), hsl(240, 75%, 89%));
+  --box-gradient-reverse: linear-gradient(
+    hsl(240, 75%, 89%),
+    hsl(240, 50%, 93%)
+  );
+
+  --matrix-cell-row-sums-background-color: hsl(122, 69%, 82%);
+  --row-sums-box-gradient: #f00;
+  --rows-sums-font-color: #000;
+
+  --matrix-cell-alternating-row-sums-background-color: hsl(48, 77%, 74%);
+  --alternating-row-sums-box-gradient: #f00;
+  --alternating-rows-sums-font-color: #000;
+  /* --background-gradient-bottom: #f00; */
+}
+
+body,
+html {
+  height: 100%;
+}
+
+.nonexistent {
+  color: hsl(240, 85%, 65%);
 }
 
 button {
-  margin: 0;
+  /* margin: 0; */
   padding: 0;
   border: none;
   background: transparent;
   cursor: pointer;
   text-align: left;
   color: inherit;
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
 }
 
 header {

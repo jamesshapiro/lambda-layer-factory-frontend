@@ -20,7 +20,7 @@ function DataProvider({ children }) {
         'layer_name': 'reqs_example',
         'email': 'james.shapiro@gmail.com',
         'dependencies': 'ulid-py==1.1.0,pytz==2021.1',
-        'runtimes': ['python3.8', 'python3.9'],
+        'runtimes': ['python3.11', 'python3.12'],
         'language': 'python',
       };
       const stringified = JSON.stringify(payload);
