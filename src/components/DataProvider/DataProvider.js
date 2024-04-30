@@ -17,16 +17,23 @@ function DataProvider({ children }) {
   React.useEffect(() => {
     async function fetchData() {
       const payload = {
-        'key': 'value'
+        'layer_name': 'reqs_example',
+        'email': 'james.shapiro@gmail.com',
+        'dependencies': 'ulid-py==1.1.0,pytz==2021.1',
+        'runtimes': ['python3.8', 'python3.9'],
+        'language': 'python',
       };
+      const stringified = JSON.stringify(payload);
+      console.log(`stringified: ${stringified}`)
 
       const request = new Request(ENDPOINT, {
-        method: 'PUT',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'x-api-key': API_KEY 
         },
-        body: JSON.stringify(payload),
+        mode: 'cors',
+        body: stringified,
         timeout: 100000,
       });
       console.log(`API Was Requested!`)
