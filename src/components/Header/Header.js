@@ -6,6 +6,7 @@ import styled from 'styled-components'
 
 function Header() {
   const { randomItem, setApiWasRequested, setRequestWasHandled } = React.useContext(DataContext);
+  const [email, setEmail] = React.useState('');
 
   function handleClick() {
     console.log('handling click')
@@ -16,14 +17,10 @@ function Header() {
   return (
     <>
       <header className={`${style.header} ${true ? style.headerSuccess : ''}`}>
-        <h1>James Shapiro</h1>
+        <h1>Lambda Layer Factory</h1>
       </header>
       <span>
-        Invisible
-        <span className={style.invisiblePlaceholder}>PLACEHOLDER</span>
-        placeholder
-        <span className={style.invisiblePlaceholder}>DEMO</span>
-        Demo
+        
       </span>
         
       <Button onClick={handleClick}>Invoke API (see console)</Button>
