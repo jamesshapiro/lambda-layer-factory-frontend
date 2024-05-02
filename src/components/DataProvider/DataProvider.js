@@ -23,8 +23,6 @@ function DataProvider({ children }) {
         'runtimes': ['python3.11', 'python3.12'],
         'language': 'python',
       };
-      const stringified = JSON.stringify(payload);
-      console.log(`stringified: ${stringified}`)
 
       const request = new Request(ENDPOINT, {
         method: 'POST',
@@ -33,19 +31,14 @@ function DataProvider({ children }) {
           'x-api-key': API_KEY 
         },
         mode: 'cors',
-        body: stringified,
+        body: JSON.stringify(payload),
         timeout: 100000,
       });
-      console.log(`API Was Requested!`)
-      console.log(`${ENDPOINT} ${API_KEY}`)
       
       const response = await fetch(request);
       const json = await response.json();
-      console.log(json)
       return json;
     }
-    console.log('data fetch requested')
-    console.log(`apiWasRequested: ${apiWasRequested} && requestWasHandled: ${requestWasHandled}`)
     if (apiWasRequested && !requestWasHandled) {
       fetchData();
       setApiWasRequested(false)

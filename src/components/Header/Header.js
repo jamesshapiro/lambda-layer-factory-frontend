@@ -9,7 +9,6 @@ function Header() {
   const [email, setEmail] = React.useState('');
 
   function handleClick() {
-    console.log('handling click')
     setApiWasRequested(true);
     setRequestWasHandled(false);
   }

@@ -18,13 +18,10 @@ const Dropdown = ( {options, category} ) => {
 
   const getValueNameFromId = (id) => {
     if (id === category) return category;
-    console.log(id)
-    console.log(options)
     return options.find((option) => option.id === id).name;
   }
 
   function handleSelectValue(selection) {
-    console.log(selection)
     setValue(selection);
   }
 
