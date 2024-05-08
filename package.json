@@ -22,7 +22,7 @@
     "build": "parcel build public/index.html",
     "new-component": "new-component",
     "build:upload-to-aws": "aws s3 sync dist s3://demo.lambdalayerfactory.com --delete --size-only && aws s3 cp dist/index.html s3://demo.lambdalayerfactory.com/index.html",
-    "build:invalidate-cf-cache": "aws cloudfront create-invalidation --distribution-id E112G744ULTLME --paths '/*'",
+    "build:invalidate-cf-cache": "aws cloudfront create-invalidation --distribution-id E112G744ULTLME --paths '/*' --no-cli-pager",
     "build:clean-build-files": "rm -rf dist/",
     "postbuild": "npm run build:upload-to-aws && npm run build:invalidate-cf-cache && npm run build:clean-build-files"
   },

@@ -13,41 +13,39 @@ function DataProvider({ children }) {
   const [items, setItems] = React.useState([]);
   const [apiWasRequested, setApiWasRequested] = React.useState(false);
   const [requestWasHandled, setRequestWasHandled] = React.useState(false);
+  const [selectedLanguage, setSelectedLanguage] = React.useState('Language');
 
   React.useEffect(() => {
     async function fetchData() {
       const payload = {
-        'layer_name': 'reqs_example',
-        'email': 'james.shapiro@gmail.com',
-        'dependencies': 'ulid-py==1.1.0,pytz==2021.1',
-        'runtimes': ['python3.11', 'python3.12'],
-        'language': 'python',
+        layer_name: 'reqs_example',
+        email: 'james.shapiro@gmail.com',
+        dependencies: 'ulid-py==1.1.0,pytz==2021.1',
+        runtimes: ['python3.11', 'python3.12'],
+        language: 'python',
       };
 
       const request = new Request(ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': API_KEY 
+          'x-api-key': API_KEY,
         },
         mode: 'cors',
         body: JSON.stringify(payload),
         timeout: 100000,
       });
-      
+
       const response = await fetch(request);
       const json = await response.json();
       return json;
     }
     if (apiWasRequested && !requestWasHandled) {
       fetchData();
-      setApiWasRequested(false)
-      setRequestWasHandled(true)
+      setApiWasRequested(false);
+      setRequestWasHandled(true);
     }
   }, [apiWasRequested, requestWasHandled]);
-
-
-  
 
   function createItem(content, variant) {
     const nextItems = [
@@ -77,7 +75,9 @@ function DataProvider({ children }) {
         clearItem,
         randomItem,
         setApiWasRequested,
-        setRequestWasHandled
+        setRequestWasHandled,
+        selectedLanguage,
+        setSelectedLanguage,
       }}
     >
       {children}

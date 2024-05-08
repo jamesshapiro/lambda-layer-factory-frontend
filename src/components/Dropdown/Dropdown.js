@@ -11,28 +11,28 @@ import {
   ChevronUpIcon,
 } from '@radix-ui/react-icons';
 
-
-
-const Dropdown = ( {options, category} ) => {
-  const [value, setValue] = React.useState(category);
+const Dropdown = ({ options, category }) => {
+  // const [value, setValue] = React.useState(category);
+  const { selectedLanguage, setSelectedLanguage } =
+    React.useContext(DataContext);
 
   const getValueNameFromId = (id) => {
     if (id === category) return category;
     return options.find((option) => option.id === id).name;
-  }
+  };
 
   function handleSelectValue(selection) {
-    setValue(selection);
+    setSelectedLanguage(selection);
   }
 
   return (
     <Select.Root
-      value={value}
+      value={selectedLanguage}
       onValueChange={(selection) => handleSelectValue(selection)}
     >
       <Select.Trigger className={style.SelectTrigger} aria-label={category}>
-        <Select.Value placeholder={category} aria-label={value}>
-          {getValueNameFromId(value)}
+        <Select.Value placeholder={category} aria-label={selectedLanguage}>
+          {getValueNameFromId(selectedLanguage)}
         </Select.Value>
         <Select.Icon className={style.SelectIcon}>
           <ChevronDownIcon />
