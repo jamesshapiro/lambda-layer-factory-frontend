@@ -97,15 +97,18 @@ export default RuntimeSelectTable;
 const StyledSVG = styled.svg``;
 
 const Table = styled.table`
+  margin-left: 10px;
   padding: 20px;
   background-color: white;
-  min-width: 200px;
+  min-width: 300px;
+  width: 100px;
   border-radius: 6px;
   border-collapse: collapse;
 `;
 
-const TBody = styled.thead`
+const TBody = styled.tbody`
   height: 100%;
+  width: 100%;
 `;
 
 const TR = styled.tr`

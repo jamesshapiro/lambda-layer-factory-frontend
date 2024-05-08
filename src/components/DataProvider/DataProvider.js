@@ -15,14 +15,21 @@ function DataProvider({ children }) {
   const [requestWasHandled, setRequestWasHandled] = React.useState(false);
   const [selectedLanguage, setSelectedLanguage] = React.useState('Language');
   const [selectedRuntimes, setSelectedRuntimes] = React.useState([]);
+  const [dependencies, setDependencies] = React.useState([
+    { library: '', version: '' },
+  ]);
   console.log(selectedRuntimes);
+  const dependenciesString = dependencies
+    .map((dep) => `${dep.library}==${dep.version}`)
+    .join(',');
+  console.log(dependenciesString);
 
   React.useEffect(() => {
     async function fetchData() {
       const payload = {
         layer_name: 'reqs_example',
         email: 'james.shapiro@gmail.com',
-        dependencies: 'ulid-py==1.1.0,pytz==2021.1',
+        dependencies: dependenciesString,
         runtimes: selectedRuntimes,
         language: selectedLanguage,
       };
@@ -82,6 +89,8 @@ function DataProvider({ children }) {
         setSelectedLanguage,
         selectedRuntimes,
         setSelectedRuntimes,
+        dependencies,
+        setDependencies,
       }}
     >
       {children}
