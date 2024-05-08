@@ -6,6 +6,7 @@ import Dropdown from '../Dropdown';
 import { LANGUAGES } from '../../constants';
 
 import styled from 'styled-components';
+import RuntimeSelectTable from '../RuntimeSelectTable';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Header />
       </div>
       <Dropdown options={LANGUAGES} category='Language' />
+      <RuntimeSelectTable />
     </DataProvider>
   );
 }

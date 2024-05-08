@@ -14,6 +14,8 @@ function DataProvider({ children }) {
   const [apiWasRequested, setApiWasRequested] = React.useState(false);
   const [requestWasHandled, setRequestWasHandled] = React.useState(false);
   const [selectedLanguage, setSelectedLanguage] = React.useState('Language');
+  const [selectedRuntimes, setSelectedRuntimes] = React.useState([]);
+  console.log(selectedRuntimes);
 
   React.useEffect(() => {
     async function fetchData() {
@@ -21,8 +23,8 @@ function DataProvider({ children }) {
         layer_name: 'reqs_example',
         email: 'james.shapiro@gmail.com',
         dependencies: 'ulid-py==1.1.0,pytz==2021.1',
-        runtimes: ['python3.11', 'python3.12'],
-        language: 'python',
+        runtimes: selectedRuntimes,
+        language: selectedLanguage,
       };
 
       const request = new Request(ENDPOINT, {
@@ -78,6 +80,8 @@ function DataProvider({ children }) {
         setRequestWasHandled,
         selectedLanguage,
         setSelectedLanguage,
+        selectedRuntimes,
+        setSelectedRuntimes,
       }}
     >
       {children}
