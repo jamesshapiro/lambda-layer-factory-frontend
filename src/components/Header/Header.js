@@ -15,27 +15,35 @@ function Header() {
 
   return (
     <>
-      <header className={`${style.header} ${true ? style.headerSuccess : ''}`}>
-        <h1>Lambda Layer Factory</h1>
-      </header>
-      <span>
-        
-      </span>
-        
+        <H1>Lambda Layer Factory</H1>
       <Button onClick={handleClick}>Invoke API (see console)</Button>
-      <span>Random Data Context Item: {randomItem}</span>
     </>
   );
 }
 
 export default Header;
 
+// Why is width being ignored by CSS here?
+
+const H1 = styled.h1`
+  background-color: white;
+  border: 1px solid var(--number-box-border-color);
+  width: fit-content;
+  
+  padding: 10px 20px;
+  margin: 0 auto;
+  margin-top: 10px;
+  font-size: 24px;
+  box-shadow: var(--box-shadow-distance) var(--box-shadow-distance) 0 0 hsl(0, 0%, 25%);
+`
+
 const Button = styled.button`
+  margin-left: 10px;
   padding: 20px;
-  background-color: hsl(217, 100%, 61%);
-  color: white;
+  background-color: white;
+  color: black;
   width: fit-content;
   border-radius: 8px;
-  margin: 100px auto;
-  border: 2px solid black;
+  border: 1px solid var(--number-box-border-color);
+  margin-bottom: 10px;
 `

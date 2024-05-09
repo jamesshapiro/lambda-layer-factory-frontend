@@ -84,7 +84,7 @@ function RuntimeSelectTable() {
   }
 
   if (selectedLanguage === 'Language') {
-    return defaultTable;
+    return null;
   }
 
   const table = getRuntimesTable(selectedLanguage);
@@ -97,6 +97,7 @@ export default RuntimeSelectTable;
 const StyledSVG = styled.svg``;
 
 const Table = styled.table`
+  margin-top: 10px;
   margin-left: 10px;
   padding: 20px;
   background-color: white;
