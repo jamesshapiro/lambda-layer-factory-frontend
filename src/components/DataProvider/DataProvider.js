@@ -18,6 +18,7 @@ function DataProvider({ children }) {
   const [dependencies, setDependencies] = React.useState([
     { library: '', version: '' },
   ]);
+  const [layerTitle, setLayerTitle] = React.useState('')
   console.log(selectedRuntimes);
   const dependenciesString = dependencies
     .map((dep) => `${dep.library}==${dep.version}`)
@@ -28,7 +29,7 @@ function DataProvider({ children }) {
     async function fetchData() {
       const payload = {
         // TODO: add a title field
-        layer_name: 'reqs_example',
+        layer_name: layerTitle,
         email: 'james.shapiro@gmail.com',
         dependencies: dependenciesString,
         runtimes: selectedRuntimes,
@@ -92,6 +93,8 @@ function DataProvider({ children }) {
         setSelectedRuntimes,
         dependencies,
         setDependencies,
+        layerTitle, 
+        setLayerTitle
       }}
     >
       {children}
