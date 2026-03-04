@@ -19,6 +19,7 @@ function DataProvider({ children }) {
     { library: '', version: '' },
   ]);
   const [layerTitle, setLayerTitle] = React.useState('')
+  const [email, setEmail] = React.useState('')
   console.log(selectedRuntimes);
   const dependenciesString = dependencies
     .map((dep) => `${dep.library}==${dep.version}`)
@@ -30,7 +31,7 @@ function DataProvider({ children }) {
       const payload = {
         // TODO: add a title field
         layer_name: layerTitle,
-        email: 'james.shapiro@gmail.com',
+        email: email,
         dependencies: dependenciesString,
         runtimes: selectedRuntimes,
         language: selectedLanguage,
@@ -93,8 +94,10 @@ function DataProvider({ children }) {
         setSelectedRuntimes,
         dependencies,
         setDependencies,
-        layerTitle, 
-        setLayerTitle
+        layerTitle,
+        setLayerTitle,
+        email,
+        setEmail,
       }}
     >
       {children}

@@ -9,13 +9,14 @@ import styled from 'styled-components';
 import RuntimeSelectTable from '../RuntimeSelectTable';
 import DependencyAdder from '../DependencyAdder';
 import LayerTitle from '../LayerTitle/LayerTitle';
-
+import EmailInput from '../EmailInput/EmailInput';
 function App() {
   return (
     <DataProvider>
       <Page>
         <Header />
         <LayerTitle />
+        <EmailInput />
         <Dropdown options={LANGUAGES} category='Language' />
         <RuntimeSelectTable />
         <DependencyAdder />
@@ -45,6 +46,7 @@ const Page = styled.div`
   & > *:nth-child(6) { animation-delay: 0.3s; }
   & > *:nth-child(7) { animation-delay: 0.35s; }
   & > *:nth-child(8) { animation-delay: 0.4s; }
+  & > *:nth-child(9) { animation-delay: 0.45s; }
 
   @media (max-width: 500px) {
     padding: 2rem 1rem 3rem;
