@@ -1,172 +1,168 @@
 import React from 'react';
 import { DataContext } from '../DataProvider';
 
-import { RUNTIMES } from '../../constants';
-
 import styled from 'styled-components';
 
 function DependencyAdder() {
   const { dependencies, setDependencies } = React.useContext(DataContext);
 
-  function getDependenciesTable(dependencies) {
-    console.log(dependencies);
-    return (
-      <Table>
-        <TBody>
-          {dependencies.map((dependency, index) => {
-            const isLast = index === dependencies.length - 1;
-            return (
-              <TR>
-                <AddTD>
-                  {isLast && (
-                    <Button
-                      onClick={() => {
-                        setDependencies((oldValue) => {
-                          const copy = [
-                            ...oldValue,
-                            { library: '', version: '' },
-                          ];
-                          copy[index].dependency = event.target.value;
-                          return copy;
-                        });
-                      }}
-                    >
-                      {'+'}
-                    </Button>
-                  )}
-                </AddTD>
-                <TD>
-                  <input
-                    value={dependency.library}
-                    onChange={(event) => {
-                      setDependencies((oldValue) => {
-                        const copy = [...oldValue];
-                        copy[index].library = event.target.value;
-                        return copy;
-                      });
-                    }}
-                  />
-                </TD>
-                <TD>
-                  <input
-                    value={dependency.version}
-                    onChange={(event) => {
-                      setDependencies((oldValue) => {
-                        const copy = [...oldValue];
-                        copy[index].version = event.target.value;
-                        return copy;
-                      });
-                    }}
-                  />
-                </TD>
-                <DeleteTD>
-                  <Button
+  return (
+    <Section>
+      <SectionLabel>Dependencies</SectionLabel>
+      <Card>
+        {dependencies.map((dependency, index) => {
+          const isLast = index === dependencies.length - 1;
+          return (
+            <Row key={index}>
+              <ActionCell>
+                {isLast && (
+                  <CircleButton
                     onClick={() => {
-                      setDependencies((oldValue) => {
-                        const copy = oldValue.filter((_, i) => i !== index);
-                        return copy;
-                      });
+                      setDependencies((oldValue) => [
+                        ...oldValue,
+                        { library: '', version: '' },
+                      ]);
                     }}
                   >
-                    {'-'}
-                  </Button>
-                </DeleteTD>
-              </TR>
-            );
-          })}
-        </TBody>
-      </Table>
-    );
-  }
-
-  const check = (
-    <StyledSVG
-      xmlns='http://www.w3.org/2000/svg'
-      width='24'
-      height='24'
-      viewBox='0 0 24 24'
-      fill='none'
-      stroke='currentColor'
-      strokeWidth='2'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-      className='lucide lucide-check'
-    >
-      <path d='M20 6 9 17l-5-5' />
-    </StyledSVG>
+                    +
+                  </CircleButton>
+                )}
+              </ActionCell>
+              <InputCell>
+                <StyledInput
+                  value={dependency.library}
+                  placeholder="package name"
+                  onChange={(event) => {
+                    setDependencies((oldValue) => {
+                      const copy = [...oldValue];
+                      copy[index] = { ...copy[index], library: event.target.value };
+                      return copy;
+                    });
+                  }}
+                />
+              </InputCell>
+              <InputCell>
+                <StyledInput
+                  value={dependency.version}
+                  placeholder="version"
+                  onChange={(event) => {
+                    setDependencies((oldValue) => {
+                      const copy = [...oldValue];
+                      copy[index] = { ...copy[index], version: event.target.value };
+                      return copy;
+                    });
+                  }}
+                />
+              </InputCell>
+              <ActionCell>
+                {dependencies.length > 1 && (
+                  <CircleButton
+                    $danger
+                    onClick={() => {
+                      setDependencies((oldValue) =>
+                        oldValue.filter((_, i) => i !== index)
+                      );
+                    }}
+                  >
+                    -
+                  </CircleButton>
+                )}
+              </ActionCell>
+            </Row>
+          );
+        })}
+      </Card>
+    </Section>
   );
-
-  const table = getDependenciesTable(dependencies);
-
-  return table;
 }
 
 export default DependencyAdder;
 
-const StyledSVG = styled.svg``;
-
-const Table = styled.table`
-  margin-top: 10px;
-  margin-left: 10px;
-  padding: 20px;
-  background-color: white;
-  min-width: 500px;
-  border-radius: 6px;
-  border-collapse: collapse;
+const Section = styled.div`
+  margin-bottom: 1.5rem;
 `;
 
-const TBody = styled.tbody`
-  height: 100%;
+const SectionLabel = styled.div`
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
 `;
 
-const TR = styled.tr`
-  height: 50px;
+const Card = styled.div`
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.75rem;
+  box-shadow: 0 1px 3px var(--shadow);
+`;
+
+const Row = styled.div`
   display: flex;
-  align-items: stretch;
-  &:first-child {
-    border-top: 1px solid var(--number-box-border-color);
-  }
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--line);
 
-  border-bottom: 1px solid var(--number-box-border-color);
-  justify-content: stretch;
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
-const AddTD = styled.td`
-  height: 100%;
-  width: 10%;
+const ActionCell = styled.div`
+  width: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  &:first-child {
-    border-left: 1px solid var(--number-box-border-color);
-  }
-  border-right: 1px solid var(--number-box-border-color);
+  flex-shrink: 0;
 `;
 
-const DeleteTD = styled.td`
-  height: 100%;
-  width: 10%;
+const InputCell = styled.div`
+  flex: 1;
+`;
+
+const StyledInput = styled.input`
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  color: var(--fg);
+  background: transparent;
+  outline: none;
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    border-color: var(--accent);
+  }
+
+  &::placeholder {
+    color: var(--muted);
+  }
+`;
+
+const CircleButton = styled.button`
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--fg);
+  font-family: 'DM Mono', monospace;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  &:first-child {
-    border-left: 1px solid var(--number-box-border-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
   }
-  border-right: 1px solid var(--number-box-border-color);
-`;
-
-const TD = styled.td`
-  height: 100%;
-  width: 40%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-right: 1px solid var(--number-box-border-color);
-`;
-
-const Button = styled.button`
-  text-align: center;
-  min-height: 100%;
-  height: 100%;
-  min-width: 100%;
 `;
