@@ -19,16 +19,16 @@ export const RUNTIMES = {
     { name: 'Python 3.14', id: 'python3.14' },
   ],
   node: [
-    { name: 'Node.js 20.x', id: 'node20.x' },
-    { name: 'Node.js 22.x', id: 'node22.x' },
-    { name: 'Node.js 24.x', id: 'node24.x' },
+    { name: 'Node.js 20.x', id: 'nodejs20.x' },
+    { name: 'Node.js 22.x', id: 'nodejs22.x' },
+    { name: 'Node.js 24.x', id: 'nodejs24.x' },
   ],
   ruby: [
     { name: 'Ruby 3.3', id: 'ruby3.3' },
     { name: 'Ruby 3.4', id: 'ruby3.4' },
   ],
   java: [
-    { name: 'Java 8 on Amazon Linux 2', id: 'java8-amazon-linux-2' },
+    { name: 'Java 8 on Amazon Linux 2', id: 'java8.al2' },
     { name: 'Java 11', id: 'java11' },
     { name: 'Java 17', id: 'java17' },
     { name: 'Java 21', id: 'java21' },
