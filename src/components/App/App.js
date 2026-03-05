@@ -4,6 +4,7 @@ import React from 'react';
 import DataProvider from '../DataProvider';
 import Dropdown from '../Dropdown';
 import { LANGUAGES } from '../../constants';
+import packageJson from '../../../package.json';
 
 import styled from 'styled-components';
 import RuntimeSelectTable from '../RuntimeSelectTable';
@@ -20,6 +21,7 @@ function App() {
         <Dropdown options={LANGUAGES} category='Language' />
         <RuntimeSelectTable />
         <DependencyAdder />
+        <VersionTag>v{packageJson.version}</VersionTag>
       </Page>
     </DataProvider>
   );
@@ -51,4 +53,13 @@ const Page = styled.div`
   @media (max-width: 500px) {
     padding: 2rem 1rem 3rem;
   }
+`;
+
+const VersionTag = styled.div`
+  text-align: center;
+  color: #8c8780;
+  font-family: monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  padding-top: 2rem;
 `;

@@ -1,6 +1,6 @@
 {
   "name": "lambda-layer-factory",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "author": "James Shapiro <james@jamesshapiro.com>",
   "dependencies": {
