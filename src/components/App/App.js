@@ -1,4 +1,5 @@
 import Header from '../Header';
+import InvokeButton from '../InvokeButton/InvokeButton';
 import React from 'react';
 
 import DataProvider from '../DataProvider';
@@ -21,6 +22,7 @@ function App() {
         <Dropdown options={LANGUAGES} category='Language' />
         <RuntimeSelectTable />
         <DependencyAdder />
+        <InvokeButton />
         <VersionTag>v{packageJson.version}</VersionTag>
       </Page>
     </DataProvider>
